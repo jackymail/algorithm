@@ -8,7 +8,7 @@ int sum_calculation(int *data,int number)
   int maximum_sum = 0;
   if(NULL == data)
   {
-//    printf("the data is null\n");
+    printf("the data is null\n");
     return -1;
   }
   
