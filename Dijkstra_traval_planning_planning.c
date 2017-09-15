@@ -36,8 +36,8 @@ void initialize_graph(Graph *G)
             G->cost[i][j] = INFINITE;
         }
         G->visited[i] = 0;
-        G->mindist[i] = 0;
-        G->mincost[i] = 0;
+        G->mindist[i] = INFINITE;
+        G->mincost[i] = INFINITE;
      }
 
      G->VertexN = 0;
@@ -120,7 +120,7 @@ void Dijstra(Graph *G,int start)
       {
           if(G->visited[v] != 1)
           {
-	  	if(G->dist[min_vertex][v] + min_dis < G->dist[start][v])
+	  	if(G->mindist[min_vertex] + G->dist[min_vertex][v] < G->mindist[v])
           	{
        	      		G->mindist[v] = G->dist[min_vertex][v] + min_dis;
               		G->mincost[v] = G->mincost[min_vertex] + G->cost[min_vertex][v];
@@ -158,7 +158,8 @@ int main(void)
    read_graph(G,&start_point,&end_point);
 
    Dijstra(G,start_point);
-   
+
+   printf("the end point is %d\n",end_point);   
    printf("%d %d\n",G->mindist[end_point],G->mincost[end_point]);
 
    return 0;
