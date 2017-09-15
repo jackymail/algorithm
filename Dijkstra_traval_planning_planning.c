@@ -58,14 +58,17 @@ void read_graph(Graph *G,int *start,int *end)
    } 
    
    scanf("%d %d %d %d",&G->VertexN,&G->EdgeN,start,end);
+   printf("the vertext number is %d,the edge number is %d\n",G->VertexN,G->EdgeN);
+   printf("the start is %d,the end is %d\n",*start,*end);
 
    for(i=0;i< G->EdgeN;i++)
    {
      scanf("%d %d",&V1,&V2);
-     scanf("%d %d",&G->dist[V2][V2],&G->cost[V1][V2]);
+     scanf("%d %d",&G->dist[V1][V2],&G->cost[V1][V2]);
      G->dist[V2][V1] = G->dist[V1][V2]; //无向图，V1到V2的距离和V2到V1的距离是一的。
      G->cost[V2][V1] = G->cost[V1][V2];
-   }
+     printf("%d %d dist is :%d cost is : %d",V1,V2,G->dist[V1][V2],G->cost[V1][V2]); 
+  }
 }
 
 void Dijstra(Graph *G,int start)
@@ -74,7 +77,7 @@ void Dijstra(Graph *G,int start)
    int v = 0;
    int min_vertex = 0;
    int min_dis = 0;
-   int min_cost = 0;
+  
    
    if(NULL == G)
    {
@@ -122,7 +125,7 @@ void Dijstra(Graph *G,int start)
           {
 	  	if(G->mindist[min_vertex] + G->dist[min_vertex][v] < G->mindist[v])
           	{
-       	      		G->mindist[v] = G->dist[min_vertex][v] + min_dis;
+       	      		G->mindist[v] = G->dist[min_vertex][v] + G->mindist[min_vertex];
               		G->mincost[v] = G->mincost[min_vertex] + G->cost[min_vertex][v];
 
           	}
@@ -159,7 +162,7 @@ int main(void)
 
    Dijstra(G,start_point);
 
-   printf("the end point is %d\n",end_point);   
+   printf("the end point is %d,the start point is %d\n",end_point,start_point);   
    printf("%d %d\n",G->mindist[end_point],G->mincost[end_point]);
 
    return 0;
