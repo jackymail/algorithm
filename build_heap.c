@@ -106,8 +106,51 @@ ElementType DeleteMax(MaxHeap H)
 	
    ｝
    H->Elements[parent] = temp;
-   return MaxItem;
+   return MaxItem;  //返回最大值
 }
+
+void PercDown(MaxHeap H,int p)
+{
+    int parent = 0;
+    int child  = 0;
+    ElementType X = 0;
+
+    X = H->Elements[p];
+    for(parent=p,parent*2<=H->size;parent=child)
+    {
+	child = parent * 2;
+        if(child != H->size && H->Elements[child] < H->Elements[child+1])
+        {	 
+		child++;
+        }
+        if(X >= H->Element[child])
+        {
+	    break;
+        }
+        else
+        {
+	   H->Elements[parent] = H->Elements[child];
+        }
+    }   
+    H->Elements[parents] = X;
+}
+
+/*
+ * 建立最大堆，思路是先把元素全部输入，先组成一个完全二叉树，然后从底部开始调整。
+ *
+ */
+
+void BuildHeap(MaxHeap H)
+{
+    int i  = 0;
+    for(i=H->size/2;i>0;i--) /* 最后一个节点的父节点*/
+    {
+	PercDown(H,i);
+    } 
+    return;
+}
+
+
 
 
 
