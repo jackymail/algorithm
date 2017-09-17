@@ -32,15 +32,15 @@ int main(void)
   {
      printf("the %d element is %d\n",index,element[index].number);
   }
-  index  = 0;
+  index  = 0;  //index 重新归0.
   while(1)
   {
     //printf("outside the index is %d\n",index);
-    if(element[index].flag == 0)
+    if(element[index].flag == 0) //遇到没有被删除过的数字 delete_index++;
     {
       ++delete_index;
     }
-    if(delete_index == 3)
+    if(delete_index == 3) //delete_index 碰到三次后（可以不连续），才做删除处理。
     {
       //  printf("the index is %d\n",index);
         left_number--;
@@ -54,7 +54,7 @@ int main(void)
         }
     }
     index++;
-    index = index %10;
+    index = index %10;  // 取模处理，index范围都被处理成0～9
   }   
   printf("the last element to be deleted is %d\n",index);
   return 0;
