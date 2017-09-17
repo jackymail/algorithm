@@ -36,8 +36,9 @@ int GetHeight(AVLTree A)
 AVLTree SingleLeftRotation(AVLTree A)
 {
     AVLTree B = NULL;
-    if(NULL == A || NULL == A->Left)
+    if(NULL == A)
     {
+        printf("%s,%d A is NULL\n",__FUNCTION__,__LINE__);
 	return NULL;
     }
     
@@ -55,14 +56,18 @@ AVLTree SingleLeftRotation(AVLTree A)
 AVLTree SingleRightRotation(AVLTree A)
 {
      AVLTree B = NULL;
-     if(NULL == A || NULL == A->Left)
+     if(NULL == A)
      {
+        printf("%s,%d A is NULL\n",__FUNCTION__,__LINE__);
 	return NULL;
      }
 
      B = A->Right;
      A->Right = B->Left;
      B->Left = A;
+ 
+     A->Height = max(GetHeight(A->Left),GetHeight(A->Right)) + 1;
+     B->Height = max(GetHeight(B->Right),A->Height) + 1;
      return B;
 }
 /*
@@ -123,7 +128,7 @@ AVLTree insert(AVLTree T,ElementType X)
            }
            else
            {
-		T = DoubleLeftRightRotation(T);
+		T = DoubleRightLeftRotation(T);
            }
 		
         }
