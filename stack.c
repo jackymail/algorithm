@@ -1,3 +1,8 @@
+/**
+ * 操作数组
+ *
+ **/
+
 #include "stdio.h"
 
 #define MaxSize 10
