@@ -137,7 +137,7 @@ void PercDown(MaxHeap H,int p)
 
 /*
  * 建立最大堆，思路是先把元素全部输入，先组成一个完全二叉树，然后从底部开始调整。
- *
+ *  H->size/2 的意思完全二叉树的最后一个节点的父亲节点
  */
 
 void BuildHeap(MaxHeap H)
