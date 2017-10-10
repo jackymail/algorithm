@@ -4,7 +4,7 @@
 #include "string.h"
  
 #define CUT_OFF 1
-#define MAX_NUMBER 1000000
+#define MAX_NUMBER 1000
 
 int swap(int *p,int *q)
 {
@@ -273,7 +273,7 @@ int main(void)
    printf("the duration for quick sort is %f",duration2);
    printf("the sorted array is as follow\n");
   #endif
-   #if 0
+   #if 1 
    for(index =0;index < MAX_NUMBER;index++)
    {
       printf("%d\n",array[index]);

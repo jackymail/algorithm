@@ -4,6 +4,7 @@
  */
 #include "stdio.h"
 #include "stdlib.h"
+#include "string.h"
 
 #define max(x,y) (x > y ? x:y)
 #define MaxSize 20
@@ -16,6 +17,7 @@ typedef struct{
 }Stack;
 
 Stack S;
+Stack S_Reverse;
 
 void Push(Stack *PtrS,ElementType item)
 {
@@ -26,7 +28,9 @@ void Push(Stack *PtrS,ElementType item)
     }
     else 
     {
-	PtrS->Data[(PtrS->Top)++] = item;
+        ++PtrS->Top;
+        printf("***push the items the index is %d,the item is %d***\n",PtrS->Top,item);
+	PtrS->Data[PtrS->Top] = item;
         return;
     }
 }
@@ -40,8 +44,7 @@ ElementType Pop(Stack *PtrS)
      }
      else
      {
-	PtrS->Top--;
-        return (PtrS->Data[PtrS->Top]);
+        return (PtrS->Data[PtrS->Top--]);
      }
 }
 
@@ -53,9 +56,14 @@ int get_lis_length(int A[],int length)
     int maxCount = 0;
     int i = 0;
     int j = 0;
+    int temp = 0;
 
     S.Top = -1;
+    S_Reverse.Top = -1;
 
+    memset(S.Data,0,sizeof(S.Data));
+    memset(S_Reverse.Data,0,sizeof(S_Reverse.Data));
+   
     for(i=0;i<length;i++)
     {
         printf("the i is %d\n",i);
@@ -66,7 +74,9 @@ int get_lis_length(int A[],int length)
 	    if(A[i] >= A[j])
             {		
                // printf("the  i = %d j = %d the A[i] is %d,the A[j] is %d\n",i,j,A[i],A[j]);
-		//printf("the i: dp[%d] is %d , j: dp[%d]+1 is %d\n",i,dp[i],j,dp[j]+1);
+	        Push(&S,A[j]);    
+    		//printf("the i: dp[%d] is %d , j: dp[%d]+1 is %d\n",i,dp[i],j,dp[j]+1);
+                
                 dp[i] = max(dp[i],dp[j]+1);
 		if(maxCount < dp[i])
                 {
@@ -78,10 +88,21 @@ int get_lis_length(int A[],int length)
             }	
         }
     }
-    for(i=0;i <maxCount;i++)
+   
+    for(i=0;i <maxCount-1;i++)
     {
 	//printf("the %d dp[i] is %d\n",i,dp[i]);
-    	printf("the string element is %d ",Pop(&S));
+    	printf("the S.top is %d\n",S.Top);
+        temp = Pop(&S);
+        printf("the temp value is %d\n",temp);
+        Push(&S_Reverse,temp);
+    }
+
+    printf("the long sequence elements is :");
+    
+    for(i=0;i < maxCount;i++)
+    {
+	printf("%d  ",Pop(&S_Reverse));
     }
     printf("\n");
     return maxCount; 
