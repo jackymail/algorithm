@@ -23,6 +23,19 @@ struct QNode{
 
 typedef struct QNode *Queue;
 
+Queue create_queue()
+{
+   Queue q = (Queue)malloc(sizeof(Queue));
+   if(NULL == q)
+   {
+      return NULL;
+   }
+   q->front = NULL;
+   q->rear = NULL;
+   q->MaxSize = 10;
+   return q;
+}
+
 int IsEmpty(Queue Q)
 {
     if(NULL == Q->front)
@@ -61,9 +74,22 @@ ElementType DeleteQ(Queue Q)
         return frontElement;
    }
 }
+void enqueue(Queue Q,int element)
+{ 
+   Position 
 
 
+}
 
+int main(void)
+{
+   Queue q ;
+   
+   q = create_queue();
+
+   
+
+}
 
 
 

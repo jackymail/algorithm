@@ -22,27 +22,33 @@ Stack Create()
     S->Next = NULL;
     return S;
 }
+
 int IsEmpty(Stack S)
 {
     if(S->Next == NULL)
     {
-	return FALSE;
+	return TRUE;
     }
     else
     {
-	return TRUE;
+	return FALSE;
     }
 }
 
-int Push(Stack S,ElementType X)
+void Push(Stack S,ElementType X)
 {
+    printf("the S->Next is %x\n",S->Next);
+    printf("push %d to the stack\n",X);
     PtrToSNode TmpCell;
     TmpCell = (PtrToSNode)malloc(sizeof(struct SNode));
     TmpCell->Data = X;
     TmpCell->Next = S->Next;
     S->Next = TmpCell;
+    //S = S->Next;
     return;
 }
+
+
 ElementType Pop(Stack S)
 {
     PtrToSNode FirstCell;
@@ -59,10 +65,26 @@ ElementType Pop(Stack S)
         TopElem = FirstCell->Data;
         S->Next = FirstCell->Next;
         free(FirstCell);
-        return TopItem;
+        return TopElem;
     }
 }
+int main(void)
+{
+   Stack S = Create();
+   int index  = 0;
 
+   Push(S,1);
+   Push(S,2);
+   Push(S,3);
+   printf("begin to pop element\n");
+   
+   for(index= 0;index < 3;index++)
+   {
+      printf("pop the value %d\n",Pop(S));
+   }
+
+   return 0;
+}
 
 
 
