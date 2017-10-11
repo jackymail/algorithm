@@ -6,9 +6,9 @@
 #include "time.h"
 
 #define ElementType int
-#define MAX_SIZE 1000000
-#define CUT_OFF 1000
-#define FILE_NAME "rand_data.txt"
+#define MAX_SIZE 100000
+#define CUT_OFF 0
+#define FILE_NAME "repeat_data.txt"
 
 void insertion_sort(int A[],int N)
 {
@@ -91,39 +91,25 @@ void quick_sort(int A[],int start,int end)
 	return;
     }
 
-    //pivot = choose_pivot(A,start,end);
-    pivot = A[start];
+    pivot = choose_pivot(A,start,end);
     i = start;
-    //j = end-1;
-    j = end;
+    j = end-1;
+
     printf("outside %s====%d,the i is %d,the j is %d\n",__FUNCTION__,__LINE__,i,j);
 
-    //if(i >= j)
-    //{
-//	return;
-  //  }
     if((end - start) >= CUT_OFF)
     {
     while(1)
     {
         printf("inside %s====%d,the i is %d,the j is %d\n",__FUNCTION__,__LINE__,i,j);
-       #if 0
-       while(A[j] >= pivot && i < j)
-        {
-	     j--;
-        }
-
-        while(A[i] <= pivot && i < j)
-        {
-	     i++;
-        }
-        #else
         while(1)
         {
           ++i;
-          if(i <= MAX_SIZE-1 && i >0)
+          if(i < end && i >0)
           {
-            if(A[i] < pivot)
+    
+            printf("the i is %d the A[i] is %d,the pivot is %d\n",i,A[i],pivot);
+            if(A[i] <= pivot)
             {
 	//	i++;
             }
@@ -139,12 +125,13 @@ void quick_sort(int A[],int start,int end)
         }
         while(1)
         {
-           //--j;
-           if(j <= MAX_SIZE-1 && j > 0)
+           --j;
+           if(j < MAX_SIZE-1 && j > 0)
            {
-           	if(A[j] > pivot)
+                printf("the j is %d the A[j] is %d,the pivot is %d\n",j,A[j],pivot);
+           	if(A[j] >= pivot)
           	{
-		    j--;
+		    ;
            	}
            	else
            	{
@@ -156,13 +143,10 @@ void quick_sort(int A[],int start,int end)
 		break;
            }
         } 
-       #endif
+       
 
         if(i < j)
         {
-            //temp = A[j];
-            //A[j] = A[i];
-            //A[i] = temp;
             swap_data(&A[i],&A[j]);
         }
         else
@@ -170,39 +154,14 @@ void quick_sort(int A[],int start,int end)
            break;
         }
     }
-
-    // printf("********the A[end] is %d the A[end-1] is %d,the A[j] is %d,the i is %d,the j is %d\n",A[end],A[end-1],A[j],i,j);
-     //A[start] = A[i];
-     //A[i] = pivot;
-//    if(A[end-1] < A[j])
- //   {
-   // 	temp = A[i];
-    //	A[i] = A[end-1];
-   // 	A[end-1] = temp;
-   // }
    
-    printf("the i is %d,the end-1 is %d\n",i,end-1);
-    //if(A[i] > A[end-1])
-#if 0
+    //printf("the i is %d,the end-1 is %d\n",i,end-1);
     if(i < end-1)
     {
 	swap_data(&A[i],&A[end-1]);
     }
-#else
-    if(start < j && j >= 0)
-    {
-    //	A[start] = A[j];
-    //	A[j] = pivot;
-   	swap_data(&A[start],&A[j]);
-    }
-#endif
-#if 0 
     quick_sort(A,start,i-1);
     quick_sort(A,i+1,end);
-#else 
-    quick_sort(A,start,j-1);
-    quick_sort(A,j+1,end);
-#endif
     }
     else
     {
@@ -245,7 +204,7 @@ int main(void)
    time_spent = (end_time-start_time)/CLOCKS_PER_SEC;
    printf("the time spent on sorting the array is %d\n",time_spent);
    printf("the sorted array is:\n");
-   #if 0
+   #if 1 
    for(index = 0;index < MAX_SIZE;index++)
    {
 	printf("%d\n",A[index]);
