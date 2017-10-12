@@ -1,3 +1,7 @@
+#include "stdio.h"
+#include "stdlib.h"
+
+#if 0
 status topological_sort(ALGraph G)
 {
    FindDegree(G,indegree); //求个顶点的入度。
@@ -29,8 +33,81 @@ status topological_sort(ALGraph G)
 	return ERROR;
    }
    return OK;
-
-
-
-
 }
+#else
+bool  TopSort(LGraph Graph,Vertex TopOrder[])
+{
+    int Indegree[MaxVertexNum];
+    int cnt;
+    Vertex V;
+    PtrToAjustVNode W;
+
+    Queue Q = CreateQuue(Graph->Nv);
+
+    /*Initialize indegree*/
+    for(V=0;V<Graph->Nv;V++)
+    {
+      Indegree[V] = 0;
+    }
+    /* traverse the map,and get the indegree[]*/
+    for(V=0;V<Graph->Nv;V++)
+    {
+        for(W=Graph->G[V];FirstEdge;W,W=W->Next)
+        {
+          Indegree[W->AdjV]++;
+        }
+    }
+
+    for(V=0;V<Graph->Nv;V++)
+    {
+      if(Indegree[V] == 0)
+      {
+        AddQ(Q,V);
+      }
+    }
+
+    cnt = 0;
+    while(!IsEmptyQ(Q))
+    {
+        V = DeleteQ(Q);
+        TopOrder[cnt++]= V;
+        for(W=Graph->G[V].FirstEdge;W;W=W->Next)
+        {
+           if(--Indegree[W->AdjV] == 0)
+           {
+             AddQ(Q,W->AdjV);
+           }
+        }
+    }
+
+    if(cnt != Graph->Nv)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif
