@@ -40,13 +40,13 @@ typedef struct{
 }LinkQueue;
 
 void Initialize(LinkQueue *PtrQ)
-{Pr
+{
     PtrQ->rear = PtrQ->front = NULL;
 }
 
 int IsEmptyQ(LinkQueue *PtrQ)
 {
-    return PtrQ->front = NULL;
+    return PtrQ->front == NULL;
 }
 
 void AddQ(LinkQueue *PtrQ,QElementType item)
@@ -74,6 +74,7 @@ QElementType DeleteQ(LinkQueue *PtrQ)
     if(PtrQ->front == NULL)
     {
        printf("queue empty\n");
+       exit(0);
     }
     frontCell = PtrQ->front;
     if(PtrQ->front == PtrQ->rear)
@@ -150,15 +151,16 @@ void six_degree_bfs(ALGraph *G,VertexType Start)
         }
         qe.Layer--;
     }
-    DestroyQueue(Q);
-    G->adjlist[Start].Percent = 100.0 * (double)visitCount /(double)G->n;
   }
+  DestroyQueue(Q);
+  G->adjlist[Start].Percent = 100.0 * (double)visitCount /(double)G->n;
 }
 
 int main()
 {
   VertexType i = 0;
   VertexType j = 0;
+  ALGraph *G = malloc(sizeof(ALGraph));  
   CreateALGraph(G);
 
   for(i=0;i<G->n;i++)
