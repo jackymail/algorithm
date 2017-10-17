@@ -68,7 +68,7 @@ int Root(){
    }
    return -1;
 }
-int DLR(int K)   //k2
+int DLR(int K)   //k2 minnum heap
 {
     if(K == -1)
     {
@@ -99,7 +99,7 @@ int DLR(int K)   //k2
     return 1;
 }
 
-int LDR(int K)   //K1 
+int LDR(int K)   //K1 binary search tree
 {
      if(K == -1)
      {
