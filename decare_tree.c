@@ -68,7 +68,7 @@ int Root(){
    }
    return -1;
 }
-int DLR(int K)
+int DLR(int K)   //k2
 {
     if(K == -1)
     {
@@ -99,7 +99,7 @@ int DLR(int K)
     return 1;
 }
 
-int LDR(int K)
+int LDR(int K)   //K1 
 {
      if(K == -1)
      {
