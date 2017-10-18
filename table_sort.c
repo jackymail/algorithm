@@ -46,7 +46,7 @@ int SortPages(int Pn,int Ln)
      i = 1;
      while(i != tail)
      {
-	if((Page[i].next == -2) && !strcmp((Page[tail].cont[Ln-1],Page[i].cont[0])))
+	if((Page[i].next == -2) && !strcmp(Page[tail].cont[Ln-1],Page[i].cont[0]))
         {
              Page[tail].next = i;
              tail = i;
@@ -72,9 +72,9 @@ void Output(int head,int Ln)
    int j = 0;
    for(j=0;j<Ln;j++)
    {
-	printf("%s",Page[head]).cont[j];
+	printf("%s \n",Page[head].cont[j]);
    } 
-   for(i=Page[head].next,i!=-1;i=Page[i].next)
+   for(i=Page[head].next;i!=-1;i=Page[i].next)
    {
 	for(j=1;j<Ln;j++)
         {
@@ -89,6 +89,7 @@ int main()
    int Ln;
    scanf("%d %d\n",&Pn,&Ln);
    ReadPages(Pn,Ln);
+   printf("the result is as follow\n");
    Output(SortPages(Pn,Ln),Ln); 
    return 0;
 }
