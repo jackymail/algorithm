@@ -4,7 +4,7 @@
  ＊*＊＊＊＊
  bellmon算法和和dijstra算法的一个主要区别个人觉得是bellon是按照edge进行松弛的，
  dijstra是按照按照vertex进行松弛的。
-  
+ 这个程序中包含了，数组实现邻接表的方法。  
  */
 
 #include "stdio.h"
