@@ -1,5 +1,5 @@
 /*
- * 
+ * -1表示最后页，-2表示未排序 
  *
  */
 
@@ -46,19 +46,32 @@ int SortPages(int Pn,int Ln)
      i = 1;
      while(i != tail)
      {
+        printf("from i to tail,the i is %d,the tail is %d\n",i,tail);
+        //printf("aaa the Page[i].next is %d\n",Page[i].next);
+        //printf("aaa the lastline is %s,the first line is %s\n",Page[tail].cont[Ln-1],Page[i].cont[0]);
 	if((Page[i].next == -2) && !strcmp(Page[tail].cont[Ln-1],Page[i].cont[0]))
         {
+             printf("kkk tail head equal ,change the next item to %d\n",i);
              Page[tail].next = i;
              tail = i;
              Page[tail].next = -1;
         }
         i = (i+1)%Pn;
      }
+
+     for(i=0;i<Pn;i++)
+     {
+        printf("the page[%d].next is %d",i,Page[i].next);
+     }
      i = 1;
      while(i != head)
      {
-	if((Page[i].next == -2) && (!strcmp(Page[i].cont[Ln-1],Page[head].cont[0])))
+	printf("from i to head,the i is %d,the head is %d\n",i,head);
+	//printf("bbb the Page[i].next is %d\n",Page[i].next);
+        //printf("bbb the lastline is %s,the first line is  %s\n",Page[i].cont[Ln-1],Page[head].cont[0]);
+        if((Page[i].next == -2) && (!strcmp(Page[i].cont[Ln-1],Page[head].cont[0])))
         {
+           printf("kkk tail head equal,check the next to %d\n",head);
 	   Page[i].next = head;
            head = i;
         }

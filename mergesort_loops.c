@@ -52,7 +52,7 @@ void merge_pass(ElementType A[],ElementType TmpA[],int N,int length)
    {
      for(j=i;j<N;j++)
      {
-       TmpA[j] = A[j];
+       TmpA[j] = A[j]; 
      }
    }
 }

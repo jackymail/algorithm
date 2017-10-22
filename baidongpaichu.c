@@ -56,12 +56,11 @@ void sortInWave(int arr[],int n)
       if(i > 0 && arr[i-1] > arr[i])
       {
         swap(&arr[i],&arr[i-1]);
-      }
+      }。
       if(i<n-1 && arr[i] < arr[i+1])
       {
         swap(&arr[i],&arr[i+1]);
       }
-
    }
 }
 int main()
@@ -75,8 +74,5 @@ int main()
     }
     return 0;
 }
-
-
-
 
 #endif

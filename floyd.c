@@ -1,3 +1,10 @@
+/*1:调用多次单源最短路径算法。对稀疏图
+ *2:floyd算法基本思想，从i 到 j只经过 编号小于等于k的顶点的最短路径。
+ *
+ *
+ */
+
+
 #include "stdio.h"
 
 bool Floyd(MGraph Graph,WeighType D[][MaxVerxNum],Vertex path[][MaxVertexNum])

@@ -1,3 +1,11 @@
+/*
+ 每次从边的集合中弹出一条最短边，检查是否是属于同一个并查集，如果属于则这条边不能使用
+ 如果不属于，则可以使用。 最短边通过最小堆实现。
+*/
+
+
+
+
 #include "stdio.h"
 #include "stdlib.h"
 
@@ -27,7 +35,7 @@ void Initialize(int N)
 Vertex Find(Vertex V)
 {
     Vertex root,trail,lead;
-     
+
     for(root=V;VSet[root]>0;root=VSet[root])
     {
 	;
@@ -36,7 +44,7 @@ Vertex Find(Vertex V)
     {
 	lead = VSet[trail];
         VSet[trail] = root;
-    }    
+    }
     return root;
 }
 
@@ -59,7 +67,7 @@ void MinHeap(int i ,int M)
 {
     int child;
     struct EdgeType temp;
-    
+
     temp = ESet[i];
     for(;((i<<1)+1) < M;i=child)
     {
@@ -105,7 +113,7 @@ int CheckCycle(Vertex V1,Vertex V2)
 {
     Vertex Root1 = Find(V1);
     Vertex Root2 = Find(V2);
-    
+
     if(Root1 == Root2)
     {
 	return 0;
@@ -125,7 +133,7 @@ int Krustal(int N,int M)
 
    InitializeESet(N);
    InitializeESet(M);
-   
+
    while(EdgeN < N-1)
    {
 	if(NextEdge <= 0)
@@ -151,14 +159,14 @@ int main()
    int N = 0;
    int M = 0;
    int i = 0;
-   
+
    scanf("%d %d",&N,&M);
    if(M < N-1)
    {
       printf(" -1 \n");
    }
    else
-   {	
+   {
 	ESet = malloc(sizeof(struct EdgeType)*M);
         for(i=0;i<M;i++)
         {
@@ -168,17 +176,3 @@ int main()
    }
    return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
